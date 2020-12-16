@@ -1,0 +1,57 @@
+% I2C Timing Diagram for 2 Byte Write.
+% By Electro707 (Jamal Bouajjaj)
+%
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-timing}
+\usepackage{amsmath}
+\usepackage{makecell}
+
+\usetikzlibrary{calc}
+
+\begin{document}
+    \begin{tikztimingtable}[
+        timing/lslope=0.1,
+        xscale=1.25,
+        yscale=1.5,
+        semithick,
+        grayz/.style={timing/z/.append style={gray}},
+        ]
+        SCL     & H 
+                N(start-start) HHL N(start-end)
+                L L 
+                16{T}
+                2{T}
+                16{T}
+                2{T} 
+                16{T}
+                2{T}
+                N(stop-start) LLH  N(stop-end)\\
+        SDA     & H 
+                HLL              
+                L N(addr-start) 14D{7-Bit Address} N(addr-end)
+                N(readwrite-start) 2D{R/$\overline{\mbox{W}}$} N(readwrite-end)
+                N(ack1-start) 2D{ACK} N(ack1-end)
+                N(data1-start) 16D{Data 1} N(data1-end)
+                N(ack2-start) 2D{ACK} N(ack2-end)
+                N(data2-start) 16D{Data 2} N(data2-end)
+                N(ack3-start) 2D{ACK} N(ack3-end)
+                L LHH\\
+%         Frame   & Z 2D{Start}  \\
+        \extracode
+        \makeatletter
+        \begin{pgfonlayer}{background}
+            \begin{scope}[semitransparent,semithick]
+            \fill [red!40] let \p2=(start-end), \p1=(start-start) in (\x1,2) rectangle (\x2,-3);
+            \fill [orange!40] let \p1=(addr-start), \p2=(addr-end) in (\x1,2) rectangle (\x2,-3);
+            \fill [yellow!40] let \p1=(readwrite-start), \p2=(readwrite-end) in (\x1,2) rectangle (\x2,-3);
+            \fill [green!40] let \p1=(ack1-start), \p2=(ack1-end) in (\x1,2) rectangle (\x2,-3);
+            \fill [blue!40] let \p1=(data1-start), \p2=(data1-end) in (\x1,2) rectangle (\x2,-3);
+            \fill [green!40] let \p1=(ack2-start), \p2=(ack2-end) in (\x1,2) rectangle (\x2,-3);
+            \fill [blue!40] let \p1=(data2-start), \p2=(data2-end) in (\x1,2) rectangle (\x2,-3);
+            \fill [green!40] let \p1=(ack3-start), \p2=(ack3-end) in (\x1,2) rectangle (\x2,-3);
+            \fill [red!40] let \p1=(stop-start), \p2=(stop-end) in (\x1,2) rectangle (\x2,-3);
+            \end{scope}
+        \end{pgfonlayer}
+    \end{tikztimingtable}
+\end{document}
