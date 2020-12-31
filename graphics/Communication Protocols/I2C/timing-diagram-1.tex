@@ -42,7 +42,7 @@
         \makeatletter
         \begin{pgfonlayer}{background}
             \begin{scope}[semitransparent,semithick]
-            \fill [red!40] let \p2=(start-end), \p1=(start-start) in (\x1,2) rectangle (\x2,-3);
+            \fill [red!40] let \p1=(start-start), \p2=(start-end) in (\x1,2) rectangle (\x2,-3);
             \fill [orange!40] let \p1=(addr-start), \p2=(addr-end) in (\x1,2) rectangle (\x2,-3);
             \fill [yellow!40] let \p1=(readwrite-start), \p2=(readwrite-end) in (\x1,2) rectangle (\x2,-3);
             \fill [green!40] let \p1=(ack1-start), \p2=(ack1-end) in (\x1,2) rectangle (\x2,-3);
@@ -53,5 +53,16 @@
             \fill [red!40] let \p1=(stop-start), \p2=(stop-end) in (\x1,2) rectangle (\x2,-3);
             \end{scope}
         \end{pgfonlayer}
+        {
+        \tiny
+        \draw let \p1=($(start-start)!0.5!(start-end)$) in node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north, align=center] at (\x1, -5) (starttxt) {\textbf{Start Bit}\\Created by pulling SDA low, then SCL low};
+        \draw let \p1=($(readwrite-end)+(-0.5,0)$) in node[draw, fill=yellow!30, minimum height=1cm, text width=2cm, anchor=north east, align=center] at (\x1, -5) (rwtxt) {\textbf{Read/Write Bit}\\Set low to read from the slave device, or high to write to it};
+        \draw let \p1=($(starttxt.west)!0.5!(rwtxt.east)$) in node[draw, fill=orange!30, minimum height=1cm, text width=2cm, anchor=north, align=center] at (\x1, -5) (starttxt) {\textbf{7-Bit Address}\\The address of the device you want to communicate to};
+        \draw let \p1=($(ack1-start)+(0.5,0)$) in node[draw, fill=green!30, minimum height=1cm, text width=2cm, anchor=north west, align=center] at (\x1, -5) (ack1txt) {\textbf{Acknowledgment Bit}\\Set low by the slave which it's address matches with what was sent by the master};
+        \draw let \p1=($(ack2-start)$) in node[draw, fill=green!30, minimum height=1cm, text width=4cm, anchor=north west, align=center] at (\x1, -5) (ack2txt) {\textbf{Acknowledgment Bit}\\If the R/$\overline{\mbox{W}}$ bit was set high, the slave writes a LOW if it acknowledges the data. If the R/$\overline{\mbox{W}}$ bit was set low, the master writes a low of it acknowledges the data, or high if it doesn't want to read from the slave anymore};
+        \draw let \p1=($(ack1txt.east)!0.5!(ack2txt.west)$) in node[draw, fill=blue!30, minimum height=1cm, text width=2cm, anchor=north, align=center] at (\x1, -5) (starttxt) {\textbf{Data Byte}\\8 Bits of data sent by the master if the R/$\overline{\mbox{W}}$ bit was set high, otherwise it's sent by the slave};
+        \draw let \p1=($(stop-start)!0.5!(stop-end)$) in node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north, align=center] at (\x1, -5) (starttxt) {\textbf{Start Bit}\\Created by pulling SDA high, then SCL high};
+        }
+%         \node[draw, fill=orange!30, minimum height=1cm, text width=5em, anchor=north west, align=center] at (7, -5) (starttxt) {Address};
     \end{tikztimingtable}
 \end{document}

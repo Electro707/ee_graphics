@@ -1,0 +1,35 @@
+% I2C Timing Diagram for 2 Byte Write.
+% By Electro707 (Jamal Bouajjaj)
+%
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-timing}
+\usepackage{amsmath}
+\usepackage{makecell}
+
+\usetikzlibrary{calc}
+
+\begin{document}
+    \begin{tikztimingtable}[
+        timing/lslope=0.1,
+        xscale=1.25,
+        yscale=1.5,
+        semithick,
+        grayz/.style={timing/z/.append style={gray}},
+        ]
+        CLK     & LLL               L N(data1s)16{T}N(data1e)  L N(data2s)16{T}N(data2e)   L L L\\
+        MOSI    & LLL               17D{Data 1}  17D{Data 2}  L L L\\
+        MISO    & ZZLN(cslowEnd)    17D{Data 1} 17D{Data 2} L L ZN(cshighEnd)\\
+        $\overline{\mbox{CS}}$  & H N(cslowStart)H L 17L 17L N(cshighStart)L H H\\
+        \extracode
+        \makeatletter
+        \begin{pgfonlayer}{background}
+            \begin{scope}[semitransparent,semithick]
+            \fill [red!40] let \p1=(cslowStart), \p2=(cslowEnd) in (\x1,2) rectangle (\x2,-7);
+            \fill [blue!40] let \p1=(data1s), \p2=(data1e) in (\x1,2) rectangle (\x2,-7);
+            \fill [blue!40] let \p1=(data2s), \p2=(data2e) in (\x1,2) rectangle (\x2,-7);
+            \fill [red!40] let \p1=(cshighStart), \p2=(cshighEnd) in (\x1,2) rectangle (\x2,-7);
+            \end{scope}
+        \end{pgfonlayer}
+    \end{tikztimingtable}
+\end{document}
