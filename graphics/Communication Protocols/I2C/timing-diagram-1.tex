@@ -61,7 +61,7 @@
         \draw let \p1=($(ack1-start)+(0.5,0)$) in node[draw, fill=green!30, minimum height=1cm, text width=2cm, anchor=north west, align=center] at (\x1, -5) (ack1txt) {\textbf{Acknowledgment Bit}\\Set low by the slave which it's address matches with what was sent by the master};
         \draw let \p1=($(ack2-start)$) in node[draw, fill=green!30, minimum height=1cm, text width=4cm, anchor=north west, align=center] at (\x1, -5) (ack2txt) {\textbf{Acknowledgment Bit}\\If the R/$\overline{\mbox{W}}$ bit was set high, the slave writes a LOW if it acknowledges the data. If the R/$\overline{\mbox{W}}$ bit was set low, the master writes a low of it acknowledges the data, or high if it doesn't want to read from the slave anymore};
         \draw let \p1=($(ack1txt.east)!0.5!(ack2txt.west)$) in node[draw, fill=blue!30, minimum height=1cm, text width=2cm, anchor=north, align=center] at (\x1, -5) (starttxt) {\textbf{Data Byte}\\8 Bits of data sent by the master if the R/$\overline{\mbox{W}}$ bit was set high, otherwise it's sent by the slave};
-        \draw let \p1=($(stop-start)!0.5!(stop-end)$) in node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north, align=center] at (\x1, -5) (starttxt) {\textbf{Start Bit}\\Created by pulling SDA high, then SCL high};
+        \draw let \p1=($(stop-start)!0.5!(stop-end)$) in node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north, align=center] at (\x1, -5) (starttxt) {\textbf{Stop Bit}\\Created by pulling SDA high, then SCL high};
         }
 %         \node[draw, fill=orange!30, minimum height=1cm, text width=5em, anchor=north west, align=center] at (7, -5) (starttxt) {Address};
     \end{tikztimingtable}

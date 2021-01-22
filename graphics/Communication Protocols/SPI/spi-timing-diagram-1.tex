@@ -7,7 +7,7 @@
 \usepackage{amsmath}
 \usepackage{makecell}
 
-\usetikzlibrary{calc}
+\usetikzlibrary{calc, arrows.meta}
 
 \begin{document}
     \begin{tikztimingtable}[
@@ -18,9 +18,9 @@
         grayz/.style={timing/z/.append style={gray}},
         ]
         CLK     & LLL               L N(data1s)16{T}N(data1e)  L N(data2s)16{T}N(data2e)   L L L\\
-        MOSI    & LLL               17D{Data 1}  17D{Data 2}  L L L\\
-        MISO    & ZZLN(cslowEnd)    17D{Data 1} 17D{Data 2} L L ZN(cshighEnd)\\
-        $\overline{\mbox{CS}}$  & H N(cslowStart)H L 17L 17L N(cshighStart)L H H\\
+        MOSI    & LLL               17D{Data 1 In}  17D{Data 2 In}  L L L\\
+        MISO    & ZZN(highzt)LN(cslowEnd)    17D{Data 1 Out} 17D{Data 2 Out} L L ZN(cshighEnd)\\
+        $\overline{\mbox{CS}}$  & N(cslowStart)H N(cstrans)L L 17L 17L N(cshighStart)L H H\\
         \extracode
         \makeatletter
         \begin{pgfonlayer}{background}
@@ -31,5 +31,12 @@
             \fill [red!40] let \p1=(cshighStart), \p2=(cshighEnd) in (\x1,2) rectangle (\x2,-7);
             \end{scope}
         \end{pgfonlayer}
+        { \tiny
+        \draw let \p1=($(cstrans)-(1, 0)$) in node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north, align=center] at (\x1, -9) (cstext) {Device's Chip Select transitions from HIGH to LOW to indicate that the master wants to communicate with it};
+        \draw node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north west, align=center] at ($(cstext.north east)+(2, 0)$) (highztxt) {Device's MISO line takes control of the bus when selected (compared to it's nominal high-Z state)};
+        }
+        
+        \draw [black,semithick,-{Triangle}] ($ (cstrans.mid) - (0.1, 0.5) $) parabola [] ($ (cstext.north)$);
+        \draw [black,semithick,-{Triangle}] ($ (highzt.mid) - (-0.1, 0.25) $) parabola [bend pos=0.6] ($ (highztxt.north)$);
     \end{tikztimingtable}
 \end{document}
