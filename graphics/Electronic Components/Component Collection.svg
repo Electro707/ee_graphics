@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="14in"
    height="8.5in"
    viewBox="0 0 355.6 215.9"
    version="1.1"
    id="svg361"
-   inkscape:version="1.1-alpha (997d1c746e, 2021-02-06)"
-   sodipodi:docname="Component Collection.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:dc="http://purl.org/dc/elements/1.1/">
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)"
+   sodipodi:docname="Component Collection.svg">
   <defs
      id="defs355">
     <marker
@@ -289,9 +289,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="16"
-     inkscape:cx="281.1875"
-     inkscape:cy="751.59375"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="488.77848"
+     inkscape:cy="308.54481"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -332,7 +332,7 @@
        empopacity="0.25098039"
        spacingx="1.5875"
        spacingy="1.5875"
-       enabled="true"
+       enabled="false"
        units="in"
        originx="0"
        originy="215.9" />
@@ -360,6 +360,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1703,11 +1704,11 @@
        id="text5734-1"
        transform="translate(18.197556,23.691491)"><tspan
          x="109.27063"
-         y="145.22464">Resistor </tspan><tspan
+         y="145.22464"><tspan>Resistor </tspan></tspan><tspan
          x="109.27063"
-         y="154.92602">Color </tspan><tspan
+         y="154.92603"><tspan>Color </tspan></tspan><tspan
          x="109.27063"
-         y="164.62741">Code</tspan></text>
+         y="164.62741"><tspan>Code</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:7.76111px;line-height:1.25;font-family:sans-serif;white-space:pre;inline-size:38.3669;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
@@ -1716,7 +1717,7 @@
        id="text5734-1-5"
        transform="translate(54.169703,30.036335)"><tspan
          x="109.27063"
-         y="145.22464">IC color</tspan></text>
+         y="145.22464"><tspan>IC color</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:7.76111px;line-height:1.25;font-family:sans-serif;white-space:pre;inline-size:38.3669;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
@@ -1725,7 +1726,9 @@
        id="text5734-1-5-9"
        transform="translate(54.09268,39.56409)"><tspan
          x="109.27063"
-         y="145.22464">Lead color</tspan></text>
+         y="145.22464"><tspan>Lead </tspan></tspan><tspan
+         x="109.27063"
+         y="154.92603"><tspan>color</tspan></tspan></text>
     <rect
        y="-217.70538"
        x="171.45"
@@ -1828,5 +1831,38 @@
        d="m 71.834371,196.45312 c 1.124479,1.08347 -0.150773,2.47248 -0.396875,2.77813"
        id="path7401"
        sodipodi:nodetypes="cc" />
+    <rect
+       y="79.375"
+       x="152.39999"
+       height="6.3403115"
+       width="15.850761"
+       id="rect14844-3-3"
+       style="fill:#bfbfbf;fill-opacity:1;stroke:#000000;stroke-width:0.760837;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       style="fill:#bfbfbf;fill-opacity:1;stroke:#000000;stroke-width:0.760837;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect14844-6-6-6"
+       width="15.850762"
+       height="6.3403115"
+       x="152.39999"
+       y="104.73624" />
+    <rect
+       style="fill:#262626;fill-opacity:1;stroke:#000000;stroke-width:0.760837;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect14844-1-7-7"
+       width="15.850752"
+       height="19.020933"
+       x="152.39999"
+       y="85.715317" />
+    <text
+       xml:space="preserve"
+       style="font-weight:500;font-size:10.5833px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans Medium';stroke-width:0.264583"
+       x="-103.47545"
+       y="164.10361"
+       id="text1267"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan1265"
+         x="-103.47545"
+         y="164.10361"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583">331</tspan></text>
   </g>
 </svg>
