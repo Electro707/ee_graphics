@@ -20,6 +20,7 @@ There are used for soldering kit instructions that I make, as there is no need t
 - 16-SOIC
 - 2xAA/AAA Holder
 - SMD LED
+- 7 Segment Display
 
 ### Large Visuals 
 - THT Resistor
@@ -30,3 +31,4 @@ There are used for soldering kit instructions that I make, as there is no need t
 - THT LED
 - 8-DIP
 - TO-92
+- 7 Segment Display
