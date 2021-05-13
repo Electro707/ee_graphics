@@ -17,10 +17,10 @@
         semithick,
         grayz/.style={timing/z/.append style={gray}},
         ]
-        CLK     & LLL               L N(data1s)16{T}N(data1e)  L N(data2s)16{T}N(data2e)   L L L\\
+        CLK     & LLL               L N(data1s)16{T}   N(data1e)  L N(data2s)16{T}N(data2e)   L L L\\
         MOSI    & LLL               17D{Data 1 In}  17D{Data 2 In}  L L L\\
-        MISO    & ZZN(highzt)LN(cslowEnd)    17D{Data 1 Out} 17D{Data 2 Out} L L ZN(cshighEnd)\\
-        $\overline{\mbox{CS}}$  & N(cslowStart)H N(cstrans)L L 17L 17L N(cshighStart)L H H\\
+        MISO    & ZZN(highzt)LN(cslowEnd)    N(data1mid)17D{Data 1 Out} N(data2mid)17D{Data 2 Out} L L N(cshighEnd)Z\\
+        $\overline{\mbox{CS}}$  & N(cslowStart)H N(cstrans)L L 17L 17L N(cshighStart)L N(cs2trans)H H\\
         \extracode
         \makeatletter
         \begin{pgfonlayer}{background}
@@ -32,11 +32,19 @@
             \end{scope}
         \end{pgfonlayer}
         { \tiny
-        \draw let \p1=($(cstrans)-(1, 0)$) in node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north, align=center] at (\x1, -9) (cstext) {Device's Chip Select transitions from HIGH to LOW to indicate that the master wants to communicate with it};
-        \draw node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north west, align=center] at ($(cstext.north east)+(2, 0)$) (highztxt) {Device's MISO line takes control of the bus when selected (compared to it's nominal high-Z state)};
+        \draw let \p1=($(cstrans)-(1, 0)$) in node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north, align=center] at (\x1, -9) (cstext) {Master pulls the slave's Chip Select line from HIGH to LOW to indicate it wants to communicate with the slave};
+        \draw node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north west, align=center] at ($(cstext.north east)+(0.5, 0)$) (highztxt) {Slaves's takes control of the MISO line when selected (compared to it's nominal High-Z state)};
+        \draw node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north west, align=center] at ($(highztxt.north east)+(0.5, 0)$) (data1txt) {Master clocks the CLK line 8 times (for a byte) while it's sending data thru the MOSI line at the same time as the slave is potentially sending data back thru the MISO line};
+        \draw node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north west, align=center] at ($(data1txt.north east)+(0.5, 0)$) (data2txt) {Again the master clocks the CLK line so that the master can send data out and the slave receive data};
+        \draw node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north west, align=center] at ($(data2txt.north east)+(0.5, 0)$) (cs2text) {The master transitions the slave's Chip Select line from LOW to HIGH indicating that the master is done communicating with it};
+        \draw node[draw, fill=red!30, minimum height=1cm, text width=2cm, anchor=north west, align=center] at ($(cs2text.north east)+(0.5, 0)$) (highz2txt) {The slave releases the MISO line into a High-Z state};
         }
         
         \draw [black,semithick,-{Triangle}] ($ (cstrans.mid) - (0.1, 0.5) $) parabola [] ($ (cstext.north)$);
-        \draw [black,semithick,-{Triangle}] ($ (highzt.mid) - (-0.1, 0.25) $) parabola [bend pos=0.6] ($ (highztxt.north)$);
+        \draw [black,semithick,-{Triangle}] ($ (highzt.mid) - (-0.1, 0.25) $) parabola [bend pos=0] ($ (highztxt.north)$);
+        \draw [black,semithick,-{Triangle}] ($ (data1mid.mid) - (-8.9, 0.25) $) parabola [bend pos=0.6] ($ (data1txt.north)$);
+        \draw [black,semithick,-{Triangle}] ($ (data2mid.mid) - (-8.9, 0.25) $) parabola [bend pos=0.6] ($ (data2txt.north)$);
+        \draw [black,semithick,-{Triangle}] ($ (cs2trans.mid) - (0.1, -0.5) $) parabola [bend pos=0] ($ (cs2text.north)$);
+        \draw [black,semithick,-{Triangle}] ($ (cshighEnd.mid) - (0.1, -0.25) $) parabola [bend pos=0] ($ (highz2txt.north)$);
     \end{tikztimingtable}
 \end{document}
