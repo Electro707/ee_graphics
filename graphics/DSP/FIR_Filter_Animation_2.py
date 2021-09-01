@@ -11,6 +11,9 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
+# Set to true to export a video instead of showing the animation.
+EXPORT_VIDEO = False
+
 # The sampling rate
 sr = 8E3
 # The number of taps
@@ -83,6 +86,9 @@ ln, = ax.plot([])
 
 # Animate the plot
 anim = animation.FuncAnimation(fig, animate, frames=ANIMATION_NUM_FRAMES, interval=1)
-writermp4 = animation.FFMpegWriter(fps=60) 
-anim.save('LowPassChangingFeq1.mp4', writer=writermp4, dpi=300)
-plt.show()
+if EXPORT_VIDEO:
+    writermp4 = animation.FFMpegWriter(fps=60)
+    anim.save('LowPassChangingFeq1.mp4', writer=writermp4, dpi=300)
+    print("Exported video")
+else:
+    plt.show()
